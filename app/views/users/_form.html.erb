@@ -1,0 +1,15 @@
+  <%= form_for @user do |f| %>
+    <div class="form-group">
+      <%= f.label :name%><br/>
+      <%= f.text_field :name, class: "form-control", placeholder: "Enter Name", autofocus: true %>
+    </div>
+    <div class="form-group">
+      <%= f.label :email %><br/>
+      <%= f.email_field :email, class: "form-control", placeholder: "Enter Email" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password %><br/>
+      <%= f.password_field :email, class: "form-control", placeholder: "Enter Password" %>
+    </div>
+      <%= f.submit(@user.new_record? ? "Sign Up" : "Update Your Account", class: "btn btn-primary")  %>
+  <% end %>
