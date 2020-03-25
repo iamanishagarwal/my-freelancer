@@ -1,4 +1,13 @@
-<h1>Showing selected user :--</h1>
-
-<p>Name: <%= @user.name%></p>
-<p>Email: <%= @user.email%></p>
+<div class="container">
+  <h1 class="text-center my-4">Your's Details :</h1>
+  <div class="row">
+    <div class="col-md-8 mx-auto card">
+      <div class="card-body">
+        <ul class="card-text">
+          <li>Name: <%= @user.name%></li>
+          <li>Email: <%= @user.email%></li>
+        </ul>
+        <%= link_to "Edit User", edit_user_path(@user), class: "btn btn-primary my-2" %>
+      </div>
+    </div>
+  </div>

@@ -1,1 +1,14 @@
 @import "bootstrap";
+
+#home_image {
+  background-image: url("../images/Freelancer-job.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 600px;
+}
+
+footer {
+  margin-top: 20px;
+  padding: 16px 0;
+  font-size: 13px;
+}

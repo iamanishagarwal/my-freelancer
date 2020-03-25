@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10 mx-auto mt-3 text-center">
+      <% flash.each do |name, msg| %>
+      <div class='alert alert-<%="#{name}" %> alert-dismissible'>
+        <a href="#" class="close" data-dismiss="alert">
+          &#215;
+        </a>
+        <%= msg %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
