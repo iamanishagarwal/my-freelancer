@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users, except: [:new]
   resources :freelancers
   resources :clients
+  resources :jobs
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
