@@ -4,6 +4,7 @@ class User < ApplicationRecord
   before_save { self.email = email.downcase }
   has_one :freelancer, dependent: :destroy
   has_one :client, dependent: :destroy
+  has_many :job, dependent: :destroy
 
   ROLES = %i[visitor freelancer client admin].freeze
 
