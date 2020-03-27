@@ -1,0 +1,14 @@
+<div class="container">
+  <h1 class="text-center my-4">Selected Job Detail :</h1>
+  <div class="row">
+    <div class="col-md-8 mx-auto card">
+      <div class="card-body text-center">
+        <h4 class="card-title"><%= @job.title %></h4>
+        <div class="card-text">
+          <p><%= @job.description %></p>
+          <p><%= link_to "Download Related Document", @job.document_url, class: "document-link" %></p>
+        </div>
+        <%= link_to "Edit Job", edit_job_path(@job), class: "btn btn-primary my-2" %>
+      </div>
+    </div>
+  </div>
