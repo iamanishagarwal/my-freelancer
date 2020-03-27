@@ -1,0 +1,22 @@
+<%= render 'shared/errors', obj: @freelancer %>
+
+<%= form_for @freelancer do |f| %>
+<div class="form-group">
+  <%= f.label :industry %><br />
+  <%= f.text_field :industry, class: "form-control", placeholder: "Enter Industry", autofocus: true %>
+</div>
+<div class="form-group">
+  <%= f.label :experience %><br />
+  <%= f.text_field :experience, class: "form-control", placeholder: "Enter Experience" %>
+</div>
+<div class="form-group">
+  <%= f.label :qualification %><br />
+  <%= f.text_field :qualification, class: "form-control", placeholder: "Enter Qualification" %>
+</div>
+<div class="form-group">
+  <%= f.label "Profile Picture" %>
+  <%= f.file_field :avatar, class: "form-control-file" %>
+  <small class="form-text text-muted">Max 1mb size</small>
+</div>
+<%= f.submit(@freelancer.new_record? ? "Submit Detail" : "Update Detail", class: "btn btn-primary")  %>
+<% end %>
