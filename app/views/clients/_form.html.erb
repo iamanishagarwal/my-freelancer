@@ -1,0 +1,14 @@
+<%= render 'shared/errors', obj: @client %>
+
+<%= form_for @client do |f| %>
+<div class="form-group">
+  <%= f.label :industry %><br />
+  <%= f.text_field :industry, class: "form-control", placeholder: "Enter Industry", autofocus: true %>
+</div>
+<div class="form-group">
+  <%= f.label "Profile Picture" %>
+  <%= f.file_field :avatar, class: "form-control-file" %>
+  <small class="form-text text-muted">Max 1mb size</small>
+</div>
+<%= f.submit(@client.new_record? ? "Submit Detail" : "Update Detail", class: "btn btn-primary")  %>
+<% end %>
