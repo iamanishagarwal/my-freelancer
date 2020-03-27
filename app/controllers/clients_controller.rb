@@ -2,8 +2,8 @@
 
 class ClientsController < ApplicationController
   before_action :set_client, only: %i[edit update show]
-  before_action :require_user, except: %i[index show]
-  before_action :require_same_user, only: %i[edit update]
+  # before_action :require_user, except: %i[index show]
+  # before_action :require_same_user, only: %i[edit update]
 
   def index
     @clients = Client.all
@@ -11,6 +11,7 @@ class ClientsController < ApplicationController
 
   def new
     @client = Client.new
+    authorize! :new, @client
   end
 
   def create
@@ -22,9 +23,12 @@ class ClientsController < ApplicationController
     else
       render 'new'
     end
+    authorize! :edit, @client
   end
 
-  def edit; end
+  def edit
+    authorize! :edit, @client
+  end
 
   def update
     if @client.update(client_params)
@@ -33,6 +37,7 @@ class ClientsController < ApplicationController
     else
       render 'edit'
     end
+    authorize! :update, @client
   end
 
   def show; end

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class FreelancersController < ApplicationController
-  before_action :set_freelancer, only: %i[edit update show destroy]
-  before_action :require_user, except: %i[index show]
-  before_action :require_same_user, only: %i[edit update destroy]
+  before_action :set_freelancer, only: %i[edit update show]
+  # before_action :require_user, except: %i[index show]
+  # before_action :require_same_user, only: %i[edit update]
 
   def index
     @freelancers = Freelancer.all
@@ -11,6 +11,7 @@ class FreelancersController < ApplicationController
 
   def new
     @freelancer = Freelancer.new
+    authorize! :new, @freelancer
   end
 
   def create
@@ -22,9 +23,12 @@ class FreelancersController < ApplicationController
     else
       render 'new'
     end
+    authorize! :create, @freelancer
   end
 
-  def edit; end
+  def edit
+    authorize! :edit, @freelancer
+  end
 
   def update
     if @freelancer.update(freelancer_params)
@@ -33,11 +37,10 @@ class FreelancersController < ApplicationController
     else
       render 'edit'
     end
+    authorize! :update, @freelancer
   end
 
   def show; end
-
-  def destroy; end
 
   private
 
@@ -49,10 +52,10 @@ class FreelancersController < ApplicationController
     params.require(:freelancer).permit(:qualification, :experience, :industry, :avatar)
   end
 
-  def require_same_user
-    if current_user != @freelancer.user
-      flash[:danger] = 'You can only edit your own details'
-      redirect_to root_path
-    end
-  end
+  # def require_same_user
+  #   if current_user != @freelancer.user
+  #     flash[:danger] = 'You can only edit your own details'
+  #     redirect_to root_path
+  #   end
+  # end
 end
