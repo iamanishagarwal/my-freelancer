@@ -23,7 +23,7 @@ class ClientsController < ApplicationController
     else
       render 'new'
     end
-    authorize! :edit, @client
+    authorize! :create, @client
   end
 
   def edit
