@@ -2,7 +2,7 @@
 
 class UsersController < ApplicationController
   before_action :set_user, only: %i[edit update show destroy]
-  # before_action :require_same_user, only: %i[edit update destroy]
+  before_action :require_same_user, only: %i[edit update destroy]
 
   def index
     @users = User.all
@@ -14,7 +14,6 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
     @user = User.new
-    authorize! :new, @user
   end
 
   def create
@@ -26,12 +25,9 @@ class UsersController < ApplicationController
     else
       render 'new'
     end
-    authorize! :create, @user
   end
 
-  def edit
-    authorize! :edit, @user
-  end
+  def edit; end
 
   def update
     if @user.update(update_user_params)
@@ -40,7 +36,6 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
-    authorize! :update, @user
   end
 
   def show; end
@@ -50,7 +45,6 @@ class UsersController < ApplicationController
     session[:user_id] = nil
     flash[:danger] = 'User successfully deleted'
     redirect_to root_path
-    authorize! :destroy, @user
   end
 
   private
@@ -67,10 +61,10 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email)
   end
 
-  # def require_same_user
-  #   if current_user != @user
-  #     flash[:danger] = 'You can only edit your own account'
-  #     redirect_to root_path
-  #   end
-  # end
+  def require_same_user
+    if current_user != @user
+      flash[:danger] = 'You can only edit your own account'
+      redirect_to root_path
+    end
+  end
 end

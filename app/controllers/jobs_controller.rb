@@ -2,8 +2,8 @@
 
 class JobsController < ApplicationController
   before_action :set_job, only: %i[edit update show destroy]
-  # before_action :require_user, except: %i[index show]
-  # before_action :require_same_user, only: %i[edit update destroy]
+  before_action :require_user, except: %i[index show]
+  before_action :require_same_user, only: %i[edit update destroy]
 
   def index
     @jobs = Job.all
@@ -11,7 +11,6 @@ class JobsController < ApplicationController
 
   def new
     @job = Job.new
-    authorize! :new, @job
   end
 
   def create
@@ -23,12 +22,9 @@ class JobsController < ApplicationController
     else
       render 'new'
     end
-    authorize! :create, @job
   end
 
-  def edit
-    authorize! :edit, @job
-  end
+  def edit; end
 
   def update
     if @job.update(job_params)
@@ -37,7 +33,6 @@ class JobsController < ApplicationController
     else
       render 'edit'
     end
-    authorize! :update, @job
   end
 
   def show; end
@@ -46,7 +41,6 @@ class JobsController < ApplicationController
     @job.destroy
     flash[:danger] = 'Job was deleted successfully'
     redirect_to root_path
-    authorize! :destroy, @job
   end
 
   private

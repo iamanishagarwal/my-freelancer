@@ -9,12 +9,12 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <% if can? :create, Freelancer %>
+          <% if logged_in? && current_user.role == "freelancer" %>
           <li class="nav-item">
             <%= link_to "Register As Freelancer", new_freelancer_path, class: "nav-link" %>
           </li>
           <% end %>
-          <% if can? :create, Client %>
+          <% if logged_in? && current_user.role == "client" %>
           <li class="nav-item">
             <%= link_to "Register As Client", new_client_path, class: "nav-link" %>
           </li>
