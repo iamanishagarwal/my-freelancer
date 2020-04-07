@@ -1,14 +1,20 @@
 <div class="container">
   <h1 class="text-center my-4">Your's Details :</h1>
   <div class="row">
-    <div class="col-md-8 mx-auto card">
-      <div class="card-body">
-        <ul class="card-text">
-          <li>Name: <%= @user.name%></li>
-          <li>Email: <%= @user.email%></li>
-          <li>Role: <%= @user.role%></li>
-        </ul>
-        <%= link_to "Edit User", edit_user_path(@user), class: "btn btn-primary my-2" %>
+    <div class="col-md-8 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          Primary Information
+        </div>
+        <div class="card-body">
+          <ul class="card-text">
+            <li>Name: <%= @user.name%></li>
+            <li>Email: <%= @user.email%></li>
+            <li>Role: <%= @user.role%></li>
+          </ul>
+          <%= link_to "Edit Primary Details", edit_user_path(@user), class: "btn btn-primary my-2" %>
+        </div>
       </div>
     </div>
   </div>
+</div>

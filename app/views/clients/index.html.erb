@@ -1,0 +1,24 @@
+<div class="container">
+  <h1 class="text-center my-4">Clients Details :</h1>
+  <% @clients.each do |client| %>
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="card">
+        <% if client.avatar.cover.url %>
+        <%=image_tag client.avatar.cover.url, class: "card-img-top my-3 mx-auto", id: "user_cover_image" %>
+        <% end %>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Name: <%= client.user.name%></li>
+            <li class="list-group-item">Email: <%= client.user.email%></li>
+            <li class="list-group-item">Role: <%= client.user.role%></li>
+            <li class="list-group-item">Industry : <%= client.industry%> </li>
+          </ul>
+          <%= link_to "Edit Primary Details", edit_user_path(client.user), class: "btn btn-primary mt-3" %>
+          <%= link_to "Edit Secondary Details", edit_client_path(client), class: "btn btn-primary mt-3" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

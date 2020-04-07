@@ -1,0 +1,22 @@
+<div class="container">
+  <h1 class="text-center my-4">Jobs :</h1>
+  <% @jobs.each do |job| %>
+  <div class="row">
+    <div class="col-md-8 mx-auto card">
+      <div class="card-body text-center">
+        <h4 class="card-title"><%= job.title %></h4>
+        <div class="card-text">
+          <p><%= job.description %></p>
+          <% if job.document_url %>
+          <p><%= link_to "Download Related Document", job.document_url, class: "document-link" %></p>
+          <% end %>
+        </div>
+        <%= link_to "Edit Job", edit_job_path(job), class: "btn btn-primary my-2" %>
+        <p class="card-text text-right">
+          <small class="text-muted">Created By: <%= link_to job.user.name, user_path(job.user) %></small>
+        </p>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

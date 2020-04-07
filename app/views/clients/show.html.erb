@@ -1,14 +1,35 @@
 <div class="container">
   <h1 class="text-center my-4">Your's Details :</h1>
   <div class="row">
-    <div class="px-4 mx-auto card">
-      <%=image_tag @client.avatar.cover.url, class: "card-img-top mt-3", id: "user_cover_image" %>
-      <div class="card-body"></div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Industry : <%= @client.industry%> </li>
-      </ul>
-      <div class="card-body">
-        <%= link_to "Edit Details", edit_client_path(@client), class: "btn btn-primary my-2" %>
+    <div class="col-md-8 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          Primary Information
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Name: <%= @user.name%></li>
+            <li class="list-group-item">Email: <%= @user.email%></li>
+            <li class="list-group-item">Role: <%= @user.role%></li>
+          </ul>
+          <%= link_to "Edit Primary Details", edit_user_path(@user), class: "btn btn-primary mt-3" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          Secondary Information
+        </div>
+        <% if @client.avatar.cover.url %>
+        <%=image_tag @client.avatar.cover.url, class: "card-img-top my-3 mx-auto", id: "user_cover_image" %>
+        <% end %>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Industry : <%= @client.industry%> </li>
+          </ul>
+          <%= link_to "Edit Secondary Details", edit_client_path(@client), class: "btn btn-primary mt-3" %>
+        </div>
       </div>
     </div>
   </div>

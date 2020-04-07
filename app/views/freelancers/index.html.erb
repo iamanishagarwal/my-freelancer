@@ -1,2 +1,26 @@
-<h1>Freelancers#index</h1>
-<p>Find me in app/views/freelancers/index.html.erb</p>
+<div class="container">
+  <h1 class="text-center my-4">Freelancers Details :</h1>
+  <% @freelancers.each do |freelancer| %>
+  <div class="row my-4">
+    <div class="col-md-8 mx-auto">
+      <div class="card">
+        <% if freelancer.avatar.cover.url %>
+        <%=image_tag freelancer.avatar.cover.url, class: "card-img-top my-3 mx-auto", id: "user_cover_image" %>
+        <% end %>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Name: <%= freelancer.user.name%></li>
+            <li class="list-group-item">Email: <%= freelancer.user.email%></li>
+            <li class="list-group-item">Role: <%= freelancer.user.role%></li>
+            <li class="list-group-item">Industry : <%= freelancer.industry%> </li>
+            <li class="list-group-item">Experience: <%= freelancer.experience%> </li>
+            <li class="list-group-item">Qualification: <%= freelancer.qualification%></li>
+          </ul>
+          <%= link_to "Edit Primary Details", edit_user_path(freelancer.user), class: "btn btn-primary mt-3" %>
+          <%= link_to "Edit Secondary Details", edit_freelancer_path(freelancer), class: "btn btn-primary mt-3" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

@@ -6,9 +6,15 @@
         <h4 class="card-title"><%= @job.title %></h4>
         <div class="card-text">
           <p><%= @job.description %></p>
+          <% if @job.document_url %>
           <p><%= link_to "Download Related Document", @job.document_url, class: "document-link" %></p>
+          <% end %>
         </div>
         <%= link_to "Edit Job", edit_job_path(@job), class: "btn btn-primary my-2" %>
+        <p class="card-text">
+          <small class="text-muted">Created By <%= job.user.name %></small>
+        </p>
       </div>
     </div>
   </div>
+</div>
