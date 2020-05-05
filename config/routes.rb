@@ -1,10 +1,16 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  Rails.application.routes.default_url_options[:host] = 'http://localhost:3000'
+
   root 'home#index'
 
   get 'signup', to: 'users#new'
-  resources :users, except: [:new]
+  resources :users, except: [:new] do
+    member do
+      get :confirm_email
+    end
+  end
   resources :freelancers
   resources :clients
   resources :jobs

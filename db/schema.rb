@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_27_063919) do
+ActiveRecord::Schema.define(version: 2020_04_08_034633) do
 
   create_table "clients", force: :cascade do |t|
     t.integer "user_id"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 2020_03_27_063919) do
     t.datetime "updated_at"
     t.string "password_digest"
     t.string "role"
+    t.boolean "email_confirmed", default: false
+    t.string "confirm_token"
   end
 
 end
