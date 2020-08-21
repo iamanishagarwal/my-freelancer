@@ -1,17 +1,28 @@
 <div class="container">
   <h1 class="text-center my-4">Jobs :</h1>
   <% @jobs.each do |job| %>
-  <div class="row">
+  <div class="row my-4">
     <div class="col-md-8 mx-auto card">
       <div class="card-body text-center">
-        <h4 class="card-title"><%= job.title %></h4>
+        <h4 class="card-title"><%= link_to job.title, job_path(job) %></h4>
         <div class="card-text">
           <p><%= job.description %></p>
           <% if job.document_url %>
           <p><%= link_to "Download Related Document", job.document_url, class: "document-link" %></p>
           <% end %>
         </div>
+        <% if current_user == job.user %>
         <%= link_to "Edit Job", edit_job_path(job), class: "btn btn-primary my-2" %>
+        <% end %>
+
+        <% if current_user.role == "freelancer" %>
+        <% @freelancer = current_user.freelancer %>
+        <% unless @freelancer.jobs.exists?(job.id) %>
+        <%= link_to "Submit Proporsal", proposals_path(freelancer_id: @freelancer.id, job_id: job.id), method: :post, class: "btn btn-primary my-2" %>
+        <% else %>
+        <%= link_to "Withdraw Proporsal", proposal_path(@freelancer.proposals(job.id).id), method: :delete, class: "btn btn-primary my-2" %>
+        <% end %>
+        <% end %>
         <p class="card-text text-right">
           <small class="text-muted">Created By: <%= link_to job.user.name, user_path(job.user) %></small>
         </p>

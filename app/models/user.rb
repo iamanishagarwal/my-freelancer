@@ -5,7 +5,7 @@ class User < ApplicationRecord
   before_create :confirmation_token
   has_one :freelancer, dependent: :destroy
   has_one :client, dependent: :destroy
-  has_many :job, dependent: :destroy
+  has_many :jobs, dependent: :destroy
 
   ROLES = %i[visitor freelancer client admin].freeze
 

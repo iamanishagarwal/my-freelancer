@@ -1,5 +1,7 @@
 <div class="container text-center">
   <h1>My-Freelancer</h1>
   <div id="home_image"></div>
+  <% unless logged_in? %>
   <%= link_to "Sign Up Now", signup_path, class: "btn btn-danger btn-lg btn-xlarge mt-3" %>
+  <% end %>
 </div>

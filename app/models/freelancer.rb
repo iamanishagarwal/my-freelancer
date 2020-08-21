@@ -2,6 +2,8 @@
 
 class Freelancer < ApplicationRecord
   belongs_to :user
+  has_many :proposals, dependent: :destroy
+  has_many :jobs, through: :proposals
 
   validates :user_id, presence: true, uniqueness: true
   validates :industry, presence: true

@@ -2,7 +2,7 @@
 
 class JobsController < ApplicationController
   before_action :set_job, only: %i[edit update show destroy]
-  before_action :require_user, except: %i[index show]
+  before_action :require_user_client, except: %i[index show]
   before_action :require_same_user, only: %i[edit update destroy]
 
   def index
@@ -51,6 +51,14 @@ class JobsController < ApplicationController
 
   def job_params
     params.require(:job).permit(:title, :description, :document)
+  end
+
+  def require_user_client
+    require_user
+    unless current_user.role? 'client'
+      redirect_to root_path
+      flash[:danger] = 'You must be a client for performing this action'
+    end
   end
 
   def require_same_user

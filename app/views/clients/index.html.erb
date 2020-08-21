@@ -14,8 +14,10 @@
             <li class="list-group-item">Role: <%= client.user.role%></li>
             <li class="list-group-item">Industry : <%= client.industry%> </li>
           </ul>
+          <% if current_user == client.user %>
           <%= link_to "Edit Primary Details", edit_user_path(client.user), class: "btn btn-primary mt-3" %>
           <%= link_to "Edit Secondary Details", edit_client_path(client), class: "btn btn-primary mt-3" %>
+          <% end %>
         </div>
       </div>
     </div>

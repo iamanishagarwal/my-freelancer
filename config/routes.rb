@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'proposals/create'
   Rails.application.routes.default_url_options[:host] = 'http://localhost:3000'
 
   root 'home#index'
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
   resources :freelancers
   resources :clients
   resources :jobs
+  resources :proposals, only: %i[create destroy]
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
